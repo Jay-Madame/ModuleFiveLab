@@ -6,7 +6,9 @@
 
 ## Problem One
 <br>
-Write a program that reads in a number of color coordinates from a file and prints out a representation of those coordinates to the console in the form of a "picture." Use the Color and Picture class specifications from the <i>Module 3</i> programming exam (reproduced here). <b>However</b>, your new program needs to read the colors in from a file and handle the following exceptions: <br>
+Write a program that reads in a number of color coordinates from a file and prints out a representation of those coordinates to the console in the form of a "picture."
+<br>Use the Color and Picture class specifications from the <i>Module 3</i> programming exam (reproduced here). 
+<br><b>However</b>, your new program needs to read the colors in from a file and handle the following exceptions: <br><br>
 &nbsp; &nbsp; &nbsp; &nbsp;
     [ ] FileNotFoundException - if the file holding the colors is not found. Print a message to the console explaining what happened and shut down the program <br>
  &nbsp; &nbsp; &nbsp; &nbsp; 
