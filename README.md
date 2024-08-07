@@ -23,8 +23,14 @@ Write a program that reads in a number of color coordinates from a file and prin
         [ ] Color Vector file format: The Color vector file shoudl hold five integers on each line, separated by spaces: <br>
     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
         XCoord YCoord Red Green Blue <br>
+<br>
 
-__Color__
+<hr width="100%" size="2">
+
+<br>
+
+__Color__ 
+<br>
 Color should have three int instance data: <br>
 [ ] red
 [ ] green
@@ -53,8 +59,13 @@ Color should have three int instance data: <br>
         [ ] GRAY(150, 150, 150)<br>
 &nbsp; &nbsp; &nbsp; &nbsp;
     [ ] Color should override the << operator that will print out a capital lettter based on the highest value of the color member <br>
+<br>
+
+<hr width="100%" size="2">
+<br> 
 
 __Picture__
+<br>
 [ ] Picture should hold a 2D vector of colors. <br>
 [ ] Should have a constructor that takes in a width and height and sets all the colors to white. <br>
 [ ] Also have a setPixel(x: int, y: int, c: Color): void function that sets the appropiate member of the 2D array to c. <br>
