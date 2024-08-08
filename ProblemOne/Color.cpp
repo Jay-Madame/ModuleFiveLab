@@ -13,27 +13,98 @@
 */
 #include "Color.h"
 #include <string>
+#include <vector>
 
-Color::Color(int r, int g, int b)
+Color::Color(int r, int g, int b) : red(r), green(g), blue(b)
 {
-    colors["25500"] = "RED";
-    colors["2551500"] = "ORANGE";
-    colors["2552550"] = "YELLOW";
-    colors["02550"] = "GREEN";
-    colors["00255"] = "BLUE";
-    colors["1500255"] = "PURPLE";
-    colors["000"] = "BLACK";
-    colors["255255255"] = "WHITE";
-    colors["150150150"] = "GRAY";
 }
-std::string Color::getColor(int r, int g, int b) const
+
+std::string Color::getColor() const
 {
-    std::string colorInput = "";
-    colorInput += std::to_string(r);
-    colorInput += std::to_string(g);
-    colorInput += std::to_string(b);
+    int colorVal[3] = { red, green, blue };
+    int maxVal = -1;
+    
+    std::vector<std::string> highestColors;
+
+    // Find the highest color value
+    for (int i = 0; i < 3; i++)
+    {
+        if (colorVal[i] > maxVal)
+        {
+            maxVal = colorVal[i];
+            highestColors.clear();
+            switch (i)
+            {
+            case 0:
+                highestColors.push_back("R");
+                break;
+            case 1:
+                highestColors.push_back("G");
+                break;
+            case 2:
+                highestColors.push_back("B");
+                break;
+            }
+        }
+        else if (colorVal[i] == maxVal)
+        {
+            switch (i)
+            {
+            case 0:
+                highestColors.push_back("R");
+                break;
+            case 1:
+                highestColors.push_back("G");
+                break;
+            case 2:
+                highestColors.push_back("B");
+                break;
+            }
+        }
+    }
+
+    // Determine the color based on the highestColors vector
+    if (highestColors.size() == 1)
+    {
+        if (highestColors[0] == "G")
+        {
+            return "V";
+        }
+        return highestColors[0];
+    }
+    else if (highestColors.size() == 3 && red == 250)
+    {
+        if (red >= 50)
+        {
+            if (red > 250)
+            {
+                return "W";
+            }
+            return "D";
+        }
+        return "G";
+    }
+    else if (highestColors.size() >= 2)
+    {
+        if (highestColors[0] == "R")
+        {
+            if (highestColors.size() > 1 && highestColors[1] == "B")
+            {
+                return "P";
+            }
+            return "Y";
+        }
+        if (highestColors[0] == "B")
+        {
+            return "T";
+        }
+    }
+
+    return "Color not found";
 }
 
 std::ostream &operator<<(std::ostream &strm, const Color &obj)
 {
+    strm << obj.getColor() << "\n";
+    return strm;
 }
