@@ -11,3 +11,29 @@
     [ ] Color Vector file format: The Color vector file shoudl hold five integers on each line, separated by spaces: <br>
         XCoord YCoord Red Green Blue <br>
 */
+#include "Color.h"
+#include <string>
+
+Color::Color(int r, int g, int b)
+{
+    colors["25500"] = "RED";
+    colors["2551500"] = "ORANGE";
+    colors["2552550"] = "YELLOW";
+    colors["02550"] = "GREEN";
+    colors["00255"] = "BLUE";
+    colors["1500255"] = "PURPLE";
+    colors["000"] = "BLACK";
+    colors["255255255"] = "WHITE";
+    colors["150150150"] = "GRAY";
+}
+std::string Color::getColor(int r, int g, int b) const
+{
+    std::string colorInput = "";
+    colorInput += std::to_string(r);
+    colorInput += std::to_string(g);
+    colorInput += std::to_string(b);
+}
+
+std::ostream &operator<<(std::ostream &strm, const Color &obj)
+{
+}
