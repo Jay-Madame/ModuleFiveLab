@@ -106,6 +106,6 @@ std::string Color::getColor() const
 
 std::ostream &operator<<(std::ostream &strm, const Color &obj)
 {
-    strm << obj.getColor() << "\n";
+    strm << obj.getColor();
     return strm;
 }
