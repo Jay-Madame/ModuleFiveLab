@@ -7,4 +7,4 @@ add_definitions(-std=c++11)
 project(ProblemOne)
 
 # Add the executable
-add_executable(ProblemOne main.cpp Picture.cpp Color.cpp)
+add_executable(ProblemOne main.cpp Picture.cpp Color.cpp exceptions.cpp)
