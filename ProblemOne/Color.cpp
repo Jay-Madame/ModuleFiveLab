@@ -15,15 +15,16 @@
 #include <string>
 #include <vector>
 
+Color::Color() : Color(0, 0, 0) {}
 Color::Color(int r, int g, int b) : red(r), green(g), blue(b)
 {
 }
 
 std::string Color::getColor() const
 {
-    int colorVal[3] = { red, green, blue };
+    int colorVal[3] = {red, green, blue};
     int maxVal = -1;
-    
+
     std::vector<std::string> highestColors;
 
     // Find the highest color value

@@ -24,6 +24,7 @@ private:
     std::unordered_map<std::string, std::string> colors;
 
 public:
+    Color();
     Color(int r, int g, int b);
     std::string getColor() const;
     friend std::ostream &operator<<(std::ostream &strm, const Color &obj);
