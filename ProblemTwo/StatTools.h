@@ -1,7 +1,7 @@
 /*
-[ ] Modify StatTools from Module Three so it will 
+[ ] Modify StatTools from Module Three so it will
     take arrays of any integer or floating point
-    values using **templates**. 
+    values using **templates**.
     Demonstrate your solution in a main.cpp <br>
 */
 
@@ -10,14 +10,15 @@
 #include <algorithm>
 #include <cmath>
 
+template <class T>
 class StatTools
 {
 public:
-    static long long max(const long long *arr, int size);
-    static long long min(const long long *arr, int size);
-    static double mean(const long long *arr, int size);
-    static long long mode(const long long *arr, int size);
-    static double median(long long *arr, int size);
-    static void stemAndLeafPlot(const long long *arr, int size);
-    static void barChart(const long long *arr, int size);
+    static T max(T *arr, int size);
+    static T min(T *arr, int size);
+    static T mean(T *arr, int size);
+    static T mode(T *arr, int size);
+    static T median(T *arr, int size);
+    static void stemAndLeafPlot(T *arr, int size);
+    static void barChart(T *arr, int size);
 };
