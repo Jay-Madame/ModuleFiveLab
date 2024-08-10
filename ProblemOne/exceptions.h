@@ -1,5 +1,4 @@
 #pragma once
-#include "Picture.h"
 #include <stdexcept>
 #include <string>
 

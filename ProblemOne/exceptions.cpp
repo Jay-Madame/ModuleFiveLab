@@ -1,5 +1,4 @@
 #include "exceptions.h"
-#include "Picture.cpp"
 #include <iostream>
 #include <fstream>
 #include <sstream>

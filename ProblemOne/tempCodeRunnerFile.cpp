@@ -3,16 +3,17 @@
 #include "Picture.h"
 #include "Picture.cpp"
 #include "exceptions.h"
-#include <fstream>
-#include <sstream>
+#include "exceptions.cpp"
 #include <iostream>
+
+void testColor();
+void testPicture();
 
 int main()
 {
     std::string fileName;
     std::cout << "Enter file name: ";
     std::cin >> fileName;
-    Picture newPic(3, 3);
     try
     {
         std::ifstream file(fileName);
@@ -22,6 +23,14 @@ int main()
         }
 
         std::string line;
+        int width, length;
+        std::getline(file, line);
+        std::istringstream iss(line);
+        if (!(iss >> width >> line))
+        {
+            throw ColorFileFormatException("Invalid file format: " + line);
+        }
+        Picture newPic(width, length);
 
         while (std::getline(file, line))
         {
@@ -34,7 +43,7 @@ int main()
 
             if (x < 0 || y < 0)
             {
-                std::string errorMssg = "Error: X or Y coordinate out of range. X: " + x;
+                std::string errorMssg = ("Error: X or Y coordinate out of range. X: " + x);
                 errorMssg += ", Y: " + y;
                 throw CoordinateOutOfRangeException(errorMssg);
                 continue;
@@ -42,55 +51,14 @@ int main()
 
             if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
             {
-                std::cerr << "Error! X: " << x << " Y: " << y << " ";
-                if (r < 0 || r > 255) // r is out of range
-                {
-                    std::cerr << "Red value too ";
-                    if (r < 0)
-                    {
-                        std::cerr << "low: min: 0, actual: " << r;
-                        r = 0;
-                    }
-                    else if (r > 255)
-                    {
-                        std::cerr << "high: max: 255, actual: " << r;
-                        r = 255;
-                    }
-                }
-                if (g < 0 || g > 255) // g is out of range
-                {
-                    std::cerr << "Green value too ";
-                    if (g < 0)
-                    {
-                        std::cerr << "low: min: 0, actual: " << g;
-                        g = 0;
-                    }
-                    else if (g > 255)
-                    {
-                        std::cerr << "high: max: 255, actual: " << g;
-                        g = 255;
-                    }
-                }
-                if (b < 0 || b > 255) // b is out of range
-                {
-                    std::cerr << "Blue value too ";
-                    if (b < 0)
-                    {
-                        std::cerr << "low: min: 0, actual: " << b;
-                        b = 0;
-                    }
-                    else if (b > 255)
-                    {
-                        std::cerr << "high: max: 255, actual: " << b;
-                        b = 255;
-                    }
-                }
-                std::cerr << std::endl;
+                std::cerr << "Error! X: " << x << " Y: " << y
+                          << " Color values out of range: R: " << r
+                          << " G: " << g << " B: " << b << std::endl;
             }
             Color color(r, g, b);
             newPic.setPixel(x, y, color);
         }
-        std::cout << newPic;
+
         file.close();
     }
     catch (const FileNotFoundException &e)
@@ -106,6 +74,7 @@ int main()
     catch (const CoordinateOutOfRangeException &e)
     {
         std::cerr << "Coordinate Error: " << e.what() << std::endl;
+        return 1;
     }
     catch (const ColorVectorOutOfRangeException &e)
     {
